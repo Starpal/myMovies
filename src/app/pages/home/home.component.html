@@ -1,5 +1,7 @@
 <!-- data coming from the home.component.ts -->
 <!-- <pre> tag format the data as the original format > json> -->
     <!-- <pre>{{ movies | json }}</pre> -->
-<slider [items]='movies'></slider>
-<app-items-banner></app-items-banner>
+<slider [items]='popularMovies'></slider>
+<items-banner [items]='upcomingMovies' title="Upcoming Movies"></items-banner>
+<items-banner [items]='topRatedMovies' title="Top Rated Movies"></items-banner>
+<items-banner></items-banner>

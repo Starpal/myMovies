@@ -1,0 +1,39 @@
+.movie-item {
+    position: relative;
+    display: block;
+    min-height: 300px;
+    border-radius: 5px;
+    background-color: var(--bg-color-light);
+    border: 1px solid var(--light-gray);
+}
+
+.movie-item-image img {
+    width: 100%;
+    border-radius: 5px;
+    height: 275;
+    object-fit: cover;
+}
+
+.movie-item-rating {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: 10px;
+    left: 10px;
+    background-color: var(--bg-color-light);
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.icon {
+    margin-right: 5px;
+    color: yellow;
+}
+
+.movie-item-title {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    margin: 0.5rem;
+    height: 30px;
+}
