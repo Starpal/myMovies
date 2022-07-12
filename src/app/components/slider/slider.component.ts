@@ -23,12 +23,11 @@ export class SliderComponent implements OnInit {
   
   currentSlideIndex: number = 0;
 
-  readonly imagesSizes = IMAGES_SIZES
-
+  readonly imagesSizes = IMAGES_SIZES;
 
   ngOnInit(): void {
     setInterval(() => {
-      this.currentSlideIndex = this.currentSlideIndex++ % this.items.length;
+      this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
     }, 5000);
   }
 }

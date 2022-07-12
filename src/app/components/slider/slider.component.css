@@ -9,6 +9,7 @@
 .slide {
     position: absolute;
     display: flex;
+    width: 100%;
     height: 35rem;
 }
 
@@ -26,7 +27,7 @@
     left: 0;
     display: block;
     content: "";
-    background: linear-gradient(
+    background-image: linear-gradient(
         to right,
         #000 0,
         transparent 75%,

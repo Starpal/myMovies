@@ -9,14 +9,23 @@ import { of } from 'rxjs';
 })
 export class MoviesService {
     baseUrl: string = 'https://api.themoviedb.org/3';
-	apiKey: string = '74fa2938e2222c8e6f12e75dd5349d71';
-	
+    apiKey: string = '74fa2938e2222c8e6f12e75dd5349d71';
+
     constructor(private http: HttpClient) {}
 
     getMovies(type: string = 'upcoming', count: number = 12) {
-		return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`)
-			.pipe(switchMap(res => {
-				return of(res.results.slice(0, count));
-			}));
+        return this.http.get<MovieDto>(`${this.baseUrl}/movie/${type}?api_key=${this.apiKey}`).pipe(
+            switchMap((res) => {
+                return of(res.results.slice(0, count));
+            })
+        );
+    }
+
+    searchMovies(page: number) {
+        return this.http.get<MovieDto>(`${this.baseUrl}/movie/popular?page=${page}&api_key=${this.apiKey}`).pipe(
+            switchMap((res) => {
+                return of(res.results);
+            })
+        );
     }
 }
