@@ -28,3 +28,14 @@
 .value {
     color: var(--yellow);
 }
+
+.actor {
+    width: 100%;
+    padding: 10px;
+}
+
+.actor span{
+    display: block;
+    text-align: center;
+    margin: 10px 0;
+}
