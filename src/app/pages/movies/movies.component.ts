@@ -12,6 +12,7 @@ import { MoviesService } from '../../services/movies.service';
 export class MoviesComponent implements OnInit {
   movies: Movie[] = [];
   genreId: string | null = null;
+  searchValue: string | null = null;
   
   constructor(private moviesService: MoviesService, private route: ActivatedRoute) { }
 
@@ -27,9 +28,9 @@ export class MoviesComponent implements OnInit {
     });
   }
 
-  getPagedMovies(page: number) {
-    this.moviesService.searchMovies(page).subscribe((movies) => {
-      this.movies = movies;
+  getPagedMovies(page: number, searchKeyWord?: string) {
+    this.moviesService.searchMovies(page, searchKeyWord).subscribe((movies) => {
+        this.movies = movies;
     });
   }
 
@@ -40,10 +41,23 @@ export class MoviesComponent implements OnInit {
   }
   
   paginate(event: any) {
+    const pageNumber = event.page + 1;;
     if (this.genreId) {
-      this.getMoviesByGenre(this.genreId, event.page + 1);
+      this.getMoviesByGenre(this.genreId, pageNumber);
     } else {
-      this.getPagedMovies(event.page + 1);
+      if (this.searchValue) {
+        this.getPagedMovies(pageNumber, this.searchValue);
+      } else {
+        // to avoid mistyping issue
+        this.getPagedMovies(pageNumber)
+      }
+    }
+  }
+
+  searchChanged() {
+    // console.log(this.searchValue);
+    if (this.searchValue) {
+      this.getPagedMovies(1, this.searchValue);
     }
   }
 }
