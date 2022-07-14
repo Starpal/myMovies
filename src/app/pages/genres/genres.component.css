@@ -1,0 +1,10 @@
+.genre-link {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    background-color: var(--yellow);
+    color: var(--bg-color);
+    font-size: 1.6rem;
+    justify-content: center;
+    align-items: center;
+}
