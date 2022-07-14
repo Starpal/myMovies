@@ -13,21 +13,24 @@ import { IMAGES_SIZES } from 'src/app/constants/images-sizes';
             // define the end stat of that div
             state('void', style({ opacity: 0 })),
             // transition > from original state * to end state 'void'
-            transition('void <=> *', [animate('1s')])
+            transition('void <=> *', [animate('1s')]),
         ]),
     ],
 })
 export class SliderComponent implements OnInit {
     // this component accept data and display them in that component
-  @Input() items: Movie[] = [];
-  
-  currentSlideIndex: number = 0;
+    @Input() items: Movie[] = [];
+    @Input() isBanner: boolean = false;
 
-  readonly imagesSizes = IMAGES_SIZES;
+    currentSlideIndex: number = 0;
 
-  ngOnInit(): void {
-    setInterval(() => {
-      this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
-    }, 5000);
-  }
+    readonly imagesSizes = IMAGES_SIZES;
+
+    ngOnInit(): void {
+        if (!this.isBanner) {
+            setInterval(() => {
+                this.currentSlideIndex = ++this.currentSlideIndex % this.items.length;
+            }, 5000);
+        }
+    }
 }

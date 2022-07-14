@@ -13,6 +13,15 @@ export interface Movie {
     video: false;
     vote_average: number;
     vote_count: number;
+    revenue: number;
+    runtime: number;
+    status: string;
+    genres: Genre[];
+}
+
+export interface Genre {
+    id: number;
+    name: string;
 }
 
 export interface MovieDto {
@@ -20,4 +29,20 @@ export interface MovieDto {
     results: Movie[];
     total_results: string;
     total_pages: string;
+}
+
+export interface MovieVideoDto {
+    id: number;
+    results: MovieVideo[];
+}
+
+export interface MovieVideo {
+    site: string;
+    key: string;
+}
+// ther way to create model interface without break it down in dto
+export interface MovieImages {
+    backdrops: {
+        file_path: string;
+    }[];
 }

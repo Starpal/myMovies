@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'; /*service to get/post data from/to server*/
-import { MovieDto } from '../models/movie';
+import { Movie, MovieDto, MovieImages, MovieVideoDto } from '../models/movie';
 import { switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 
 @Injectable({
-    /** I can use the sevice anywhere */ providedIn: 'root',
+    /** I can use the sevice anywhere */
+    providedIn: 'root',
 })
 export class MoviesService {
     baseUrl: string = 'https://api.themoviedb.org/3';
@@ -21,6 +22,10 @@ export class MoviesService {
         );
     }
 
+    getMovie(id: string) {
+        return this.http.get<Movie>(`${this.baseUrl}/movie/${id}?api_key=${this.apiKey}`);
+    }
+
     searchMovies(page: number) {
         return this.http.get<MovieDto>(`${this.baseUrl}/movie/popular?page=${page}&api_key=${this.apiKey}`).pipe(
             switchMap((res) => {
@@ -28,4 +33,24 @@ export class MoviesService {
             })
         );
     }
+
+    getMovieVideos(id: string) {
+        return this.http.get<MovieVideoDto>(`${this.baseUrl}/movie/${id}/videos?api_key=${this.apiKey}`).pipe(
+            switchMap((res) => {
+                return of(res.results);
+            })
+        );
+    }
+
+    getMovieImages(id: string) {
+        return this.http.get<MovieImages>(`${this.baseUrl}/movie/${id}/images?api_key=${this.apiKey}`);
+    }
+
+    // getTvs(type: string = 'latest', count: number = 12) {
+    //     return this.http.get<TvDto>(`${this.baseUrl}/tv/${type}?api_key=${this.apiKey}`).pipe(
+    //         switchMap((res) => {
+    //             return of(res.results.slice(0, count));
+    //         })
+    //     );
+    // }
 }

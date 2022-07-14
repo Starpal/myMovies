@@ -1,0 +1,30 @@
+
+:host ::ng-deep .p-tabview-nav {
+    justify-content: center;
+}
+
+.p-tabview-panel {
+    display: flex;
+}
+
+.poster {
+    max-width: 100%;
+}
+
+.overview {
+    line-height: 1.5;
+}
+
+.stats {
+    display: flex;
+    margin-bottom: 15px;
+}
+
+.label {
+    font-weight: bold;
+    width: 150px;
+}
+
+.value {
+    color: var(--yellow);
+}
